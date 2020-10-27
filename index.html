@@ -2,6 +2,92 @@
 <html class="no-js" lang="en">
 
 <head>
+    <style>
+
+h3 {
+  color: #262626;
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+p {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #666666;
+
+  &.small {
+    font-size: 14px;
+  }
+}
+
+.go-corner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  background-color: #00838d;
+  border-radius: 0 4px 0 32px;
+}
+
+.go-arrow {
+  margin-top: -4px;
+  margin-right: -4px;
+  color: white;
+  font-family: courier, sans;
+}
+
+.card1 {
+  display: block;
+  position: relative;
+  max-width: 262px;
+  background-color: #f2f8f9;
+  border-radius: 4px;
+  padding: 32px 24px;
+  margin: 12px;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: #00838d;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover:before {
+    transform: scale(21);
+  }
+}
+
+.card1:hover {
+  p {
+    transition: all 0.3s ease-out;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  h3 {
+    transition: all 0.3s ease-out;
+    color: #ffffff;
+  }
+} </style> 
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -151,13 +237,20 @@
                         <img src="data:image/png;base64,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" />
                     </div>
                     <!-- End .project-image -->
+                    
+                 
                     <div class="project-info1">
-                        <h3>Web Application | HTML   </h3>
-                        <p>
-                            Developed some basic web pages like Student Time-tables’  , Application Forms using HTML
-                        </p>
-                        <a href="#">View Project</a>
-                    </div>
+                        <a class="card1" href="#">
+                          <h3>Web Applications</h3>
+                          <p class="small">Developed some basic web pages like Student Time-tables’ , Application Forms using HTML.</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        
+                           
                     <!-- End .project-info -->
                 </div>
                 <!-- End .project -->
